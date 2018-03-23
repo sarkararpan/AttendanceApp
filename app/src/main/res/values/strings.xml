@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AAS</string>
+    <string name="teacher_btn_string">Teacher</string>
+    <string name="student_btn_string">Student</string>
+    <string name="enter_student_id_here">Enter Student Id Here</string>
+    <string name="teacher_view_text">teacher_view</string>
+    <string name="add_attendence_btn_txt">add_attendance</string>
+    <string name="view_attendence_btn_text">View Attendance</string>
+</resources>
