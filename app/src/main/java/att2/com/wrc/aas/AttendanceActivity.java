@@ -15,7 +15,7 @@ import com.google.firebase.database.Query;
 public class AttendanceActivity extends AppCompatActivity {
 
     DatabaseReference studentRef;
-    FirebaseRecyclerOptions<Student> options
+    FirebaseRecyclerOptions<Student> options;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +33,5 @@ public class AttendanceActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        FirebaseRecyclerAdapter<Student, StudentHolder> adapter = new FirebaseRecyclerAdapter<Student, StudentHolder>() {
-            @Override
-            protected void onBindViewHolder(@NonNull StudentHolder holder, int position, @NonNull Student model) {
-
-            }
-
-            @Override
-            public StudentHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                return null;
-            }
-        };
     }
 }
