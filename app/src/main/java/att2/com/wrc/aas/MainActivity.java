@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         teacherBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, TeacherIntermidiateActivity.class);
+                Intent intent = new Intent(MainActivity.this, AttendanceActivity.class);
                 startActivity(intent);
             }
         });

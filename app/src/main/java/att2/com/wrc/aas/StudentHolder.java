@@ -24,7 +24,7 @@ public class StudentHolder extends RecyclerView.ViewHolder {
         name.setText(n);
     }
 
-    public void setSid(long i) {
-        sid.setText(String.valueOf(i));
+    public void setSid(String i) {
+        sid.setText(i);
     }
 }
