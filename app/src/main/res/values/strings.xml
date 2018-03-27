@@ -6,4 +6,5 @@
     <string name="teacher_view_text">teacher_view</string>
     <string name="add_attendence_btn_txt">add_attendance</string>
     <string name="view_attendence_btn_text">View Attendance</string>
+    <string name="attendance_checkbox_text">Attendance</string>
 </resources>
