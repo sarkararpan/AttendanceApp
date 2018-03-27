@@ -9,12 +9,16 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class AttendanceActivity extends AppCompatActivity {
 
@@ -43,10 +47,17 @@ public class AttendanceActivity extends AppCompatActivity {
         super.onStart();
         FirebaseRecyclerAdapter<Student, StudentHolder> adapter = new FirebaseRecyclerAdapter<Student, StudentHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull StudentHolder holder, int position, @NonNull Student model) {
+            protected void onBindViewHolder(@NonNull final StudentHolder holder, int position, @NonNull final Student model) {
 
                 holder.setName(model.getName());
                 holder.setSid(String.valueOf(model.getSid()));
+                holder.setCheck(String.valueOf(model.getSid()));
+                holder.getCheck().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        holder.updateCheck(String.valueOf(model.getSid()), isChecked);
+                    }
+                });
 
             }
 
