@@ -17,11 +17,12 @@ import com.google.firebase.database.ValueEventListener;
  */
 
 public class StudentHolder extends RecyclerView.ViewHolder {
-
+    private DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Attendance");
     private final TextView name;
     private final TextView sid;
     private final CheckBox check;
     private final TextView countView;
+    private long count;
 
 
     public StudentHolder(View itemView) {
@@ -47,12 +48,12 @@ public class StudentHolder extends RecyclerView.ViewHolder {
     }
 
     public void setCountView(String c) {
-        countView.setText(c);
+        String text = "Total : " + c;
+        countView.setText(text);
     }
 
     // get and set the status of attendance of that student
     public void setCheck(final String roll) {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Attendance");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -80,7 +81,39 @@ public class StudentHolder extends RecyclerView.ViewHolder {
 
     // Update the attendance when the checkbox status is changed
     public void updateCheck(final String roll, final boolean status) {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Attendance");
         reference.child(roll).child("status").setValue(status);
+
+        // Use single value event listener here, important.
+        // Otherwise this will update infinite times.
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild(roll)) {
+                    if(dataSnapshot.child(roll).hasChild("count")) {
+                        count = (long) dataSnapshot.child(roll).child("count").getValue();
+                        if(status) {
+                            reference.child(roll).child("count").setValue(count + 1);
+                        } else {
+                            if((count - 1) < 0) {
+                                reference.child(roll).child("count").setValue(0);
+                            } else {
+                                reference.child(roll).child("count").setValue(count - 1);
+                            }
+                        }
+                    } else {
+                        if(status) {
+                            reference.child(roll).child("count").setValue(1);
+                        } else {
+                            reference.child(roll).child("count").setValue(0);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }
