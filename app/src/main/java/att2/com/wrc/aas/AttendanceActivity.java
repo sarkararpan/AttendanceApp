@@ -44,8 +44,10 @@ public class AttendanceActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<Student, StudentHolder> adapter = new FirebaseRecyclerAdapter<Student, StudentHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull StudentHolder holder, int position, @NonNull Student model) {
+
                 holder.setName(model.getName());
                 holder.setSid(String.valueOf(model.getSid()));
+
             }
 
             @Override
