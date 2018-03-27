@@ -52,6 +52,26 @@ public class AttendanceActivity extends AppCompatActivity {
                 holder.setName(model.getName());
                 holder.setSid(String.valueOf(model.getSid()));
                 holder.setCheck(String.valueOf(model.getSid()));
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Attendance");
+
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.hasChild(String.valueOf(model.getSid()))) {
+                            if(dataSnapshot.child(String.valueOf(model.getSid())).hasChild("count")) {
+                                holder.setCountView(String.valueOf((long) dataSnapshot.child(String.valueOf(model.getSid()))
+                                        .child("count").getValue()));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
                 holder.getCheck().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

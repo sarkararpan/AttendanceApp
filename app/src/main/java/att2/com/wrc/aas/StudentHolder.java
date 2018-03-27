@@ -21,6 +21,8 @@ public class StudentHolder extends RecyclerView.ViewHolder {
     private final TextView name;
     private final TextView sid;
     private final CheckBox check;
+    private final TextView countView;
+
 
     public StudentHolder(View itemView) {
         super(itemView);
@@ -28,7 +30,12 @@ public class StudentHolder extends RecyclerView.ViewHolder {
         name = itemView.findViewById(R.id.student_name);
         sid = itemView.findViewById(R.id.student_id);
         check = itemView.findViewById(R.id.attendance_check);
+        countView = itemView.findViewById(R.id.student_attendance_count);
 
+    }
+
+    public CheckBox getCheck() {
+        return check;
     }
 
     public void setName(String n) {
@@ -39,15 +46,27 @@ public class StudentHolder extends RecyclerView.ViewHolder {
         sid.setText(i);
     }
 
-    // get the status of attendance of that student
+    public void setCountView(String c) {
+        countView.setText(c);
+    }
+
+    // get and set the status of attendance of that student
     public void setCheck(final String roll) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Attendance");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.hasChild(roll)) {
-                    check.setChecked((boolean) dataSnapshot.child(roll).getValue());
+                    if(dataSnapshot.child(roll).hasChild("status")) {
+                        check.setChecked((boolean) dataSnapshot.child(roll).child("status").getValue());
+                    }
+                    else {
+                        check.setChecked(false);
+                    }
                     Log.d("TAG", "onDataChange: this is done");
+                }
+                else {
+                    check.setChecked(false);
                 }
             }
 
@@ -59,12 +78,9 @@ public class StudentHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public CheckBox getCheck() {
-        return check;
-    }
-
+    // Update the attendance when the checkbox status is changed
     public void updateCheck(final String roll, final boolean status) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Attendance");
-        reference.child(roll).setValue(status);
+        reference.child(roll).child("status").setValue(status);
     }
 }
