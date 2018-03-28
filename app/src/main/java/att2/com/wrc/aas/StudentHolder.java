@@ -12,15 +12,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+
 /**
  * Created by Aurghya on 24-03-2018.
  */
 
 public class StudentHolder extends RecyclerView.ViewHolder {
-
+    private DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Attendance");
     private final TextView name;
     private final TextView sid;
     private final CheckBox check;
+    private final TextView countView;
+    private long count;
+
 
     public StudentHolder(View itemView) {
         super(itemView);
@@ -28,7 +33,12 @@ public class StudentHolder extends RecyclerView.ViewHolder {
         name = itemView.findViewById(R.id.student_name);
         sid = itemView.findViewById(R.id.student_id);
         check = itemView.findViewById(R.id.attendance_check);
+        countView = itemView.findViewById(R.id.student_attendance_count);
 
+    }
+
+    public CheckBox getCheck() {
+        return check;
     }
 
     public void setName(String n) {
@@ -39,15 +49,40 @@ public class StudentHolder extends RecyclerView.ViewHolder {
         sid.setText(i);
     }
 
-    // get the status of attendance of that student
-    public void setCheck(final String roll) {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Attendance");
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+    public void setCountView(String c) {
+        String text = "Total : " + c;
+        countView.setText(text);
+    }
+
+    // get and set the status of attendance of that student
+    public void setCheck(final String roll, final String date, final String classId, final String periodId) {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild(roll)) {
-                    check.setChecked((boolean) dataSnapshot.child(roll).getValue());
+                // Order roll -> classId -> date -> periodId
+                if (dataSnapshot.hasChild(roll)) {
+                    if (dataSnapshot.child(roll).hasChild(classId)) {
+                        // TODO: Make dynamic
+                        if (dataSnapshot.child(roll).child(classId).hasChild(date)) {
+                            if (dataSnapshot.child(roll).child(classId).child(date).hasChild(periodId)) {
+                                check.setChecked((boolean) dataSnapshot
+                                        .child(roll)
+                                        .child(classId)
+                                        .child(date)
+                                        .child(periodId)
+                                        .getValue());
+                            } else {
+                                check.setChecked(false);
+                            }
+                        } else {
+                            check.setChecked(false);
+                        }
+                    } else {
+                        check.setChecked(false);
+                    }
                     Log.d("TAG", "onDataChange: this is done");
+                } else {
+                    check.setChecked(false);
                 }
             }
 
@@ -59,12 +94,48 @@ public class StudentHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public CheckBox getCheck() {
-        return check;
-    }
+    // Update the attendance when the checkbox status is changed
+    public void updateCheck(final String roll, final String date, final String classId, final String periodId, final boolean status) {
+        // Temporary date parsing
+        reference.child(roll)
+                .child(classId)
+                .child(date)
+                .child(periodId)
+                .setValue(status);
 
-    public void updateCheck(final String roll, final boolean status) {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Attendance");
-        reference.child(roll).setValue(status);
+
+        // Use single value event listener here, important.
+        // Otherwise this will update infinite times.
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild(roll)) {
+                    if (dataSnapshot.child(roll).hasChild("count")) {
+                        count = (long) dataSnapshot.child(roll).child("count").getValue();
+                        if (status) {
+                            reference.child(roll).child("count").setValue(count + 1);
+                        } else {
+                            if ((count - 1) < 0) {
+                                reference.child(roll).child("count").setValue(0);
+                            } else {
+                                reference.child(roll).child("count").setValue(count - 1);
+                            }
+                        }
+                    } else {
+                        if (status) {
+                            reference.child(roll).child("count").setValue(1);
+                        } else {
+                            reference.child(roll).child("count").setValue(0);
+                        }
+                    }
+                }
+            }
+
+            // TODO: Use proper logging here
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }
