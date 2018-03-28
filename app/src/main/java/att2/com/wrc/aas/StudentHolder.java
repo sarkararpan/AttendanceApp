@@ -12,6 +12,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+
 /**
  * Created by Aurghya on 24-03-2018.
  */
@@ -53,20 +55,33 @@ public class StudentHolder extends RecyclerView.ViewHolder {
     }
 
     // get and set the status of attendance of that student
-    public void setCheck(final String roll) {
+    public void setCheck(final String roll, final String date, final String classId, final String periodId) {
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild(roll)) {
-                    if(dataSnapshot.child(roll).hasChild("status")) {
-                        check.setChecked((boolean) dataSnapshot.child(roll).child("status").getValue());
-                    }
-                    else {
+                // Order roll -> classId -> date -> periodId
+                if (dataSnapshot.hasChild(roll)) {
+                    if (dataSnapshot.child(roll).hasChild(classId)) {
+                        // TODO: Make dynamic
+                        if (dataSnapshot.child(roll).child(classId).hasChild(date)) {
+                            if (dataSnapshot.child(roll).child(classId).child(date).hasChild(periodId)) {
+                                check.setChecked((boolean) dataSnapshot
+                                        .child(roll)
+                                        .child(classId)
+                                        .child(date)
+                                        .child(periodId)
+                                        .getValue());
+                            } else {
+                                check.setChecked(false);
+                            }
+                        } else {
+                            check.setChecked(false);
+                        }
+                    } else {
                         check.setChecked(false);
                     }
                     Log.d("TAG", "onDataChange: this is done");
-                }
-                else {
+                } else {
                     check.setChecked(false);
                 }
             }
@@ -80,32 +95,39 @@ public class StudentHolder extends RecyclerView.ViewHolder {
     }
 
     // Update the attendance when the checkbox status is changed
-    // TODO: Maybe pass the date string and the period here
-    public void updateCheck(final String roll, final boolean status) {
-        reference.child(roll).child("status").setValue(status);
+    public void updateCheck(final String roll, final String date, final String classId, final String periodId, final boolean status) {
+        // Temporary date parsing
+        reference.child(roll)
+                .child(classId)
+                .child(date)
+                .child(periodId)
+                .setValue(status);
 
-        // TODO: Add date string option here
 
         // Use single value event listener here, important.
         // Otherwise this will update infinite times.
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild(roll)) {
-                    if(dataSnapshot.child(roll).hasChild("count")) {
-                        // TODO: Optimize
+                boolean attendance;
+                if (dataSnapshot.hasChild(roll)) {
+                    if (dataSnapshot.child(roll).hasChild("count")) {
+                        // TODO: Solve count bug
                         count = (long) dataSnapshot.child(roll).child("count").getValue();
-                        if(status) {
+                        /*attendance = (boolean) dataSnapshot.child(classId).child(date).child(periodId).getValue();
+                        if (attendance == status) {*/
+                        if (status) {
                             reference.child(roll).child("count").setValue(count + 1);
                         } else {
-                            if((count - 1) < 0) {
+                            if ((count - 1) < 0) {
                                 reference.child(roll).child("count").setValue(0);
                             } else {
                                 reference.child(roll).child("count").setValue(count - 1);
                             }
                         }
+                        //}
                     } else {
-                        if(status) {
+                        if (status) {
                             reference.child(roll).child("count").setValue(1);
                         } else {
                             reference.child(roll).child("count").setValue(0);

@@ -26,12 +26,20 @@ public class AttendanceActivity extends AppCompatActivity {
     FirebaseRecyclerOptions<Student> options;
     RecyclerView recyclerView;
 
+    String classDate;
+    String classId;
+    String classPeriod;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance);
 
         studentRef = FirebaseDatabase.getInstance().getReference("Students");
+
+        classDate = getIntent().getStringExtra("date");
+        classId = getIntent().getStringExtra("class");
+        classPeriod = getIntent().getStringExtra("period");
 
         Query query = studentRef;
 
@@ -51,15 +59,15 @@ public class AttendanceActivity extends AppCompatActivity {
 
                 holder.setName(model.getName());
                 holder.setSid(String.valueOf(model.getSid()));
-                holder.setCheck(String.valueOf(model.getSid()));
+                holder.setCheck(String.valueOf(model.getSid()), classDate, classId, classPeriod);
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Attendance");
 
                 // Use normal value event listener here, otherwise updated count will not properly show.
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.hasChild(String.valueOf(model.getSid()))) {
-                            if(dataSnapshot.child(String.valueOf(model.getSid())).hasChild("count")) {
+                        if (dataSnapshot.hasChild(String.valueOf(model.getSid()))) {
+                            if (dataSnapshot.child(String.valueOf(model.getSid())).hasChild("count")) {
                                 holder.setCountView(String.valueOf((long) dataSnapshot.child(String.valueOf(model.getSid()))
                                         .child("count").getValue()));
                             } else {
@@ -79,7 +87,7 @@ public class AttendanceActivity extends AppCompatActivity {
                 holder.getCheck().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        holder.updateCheck(String.valueOf(model.getSid()), isChecked);
+                        holder.updateCheck(String.valueOf(model.getSid()), classDate, classId, classPeriod, isChecked);
                     }
                 });
 

@@ -3,9 +3,14 @@
     <string name="teacher_btn_string">Teacher</string>
     <string name="student_btn_string">Student</string>
     <string name="enter_student_id_here">Enter Student Id Here</string>
-    <string name="teacher_view_text">teacher_view</string>
-    <string name="add_attendence_btn_txt">add_attendance</string>
+    <string name="teacher_view_text">Teacher View</string>
+    <string name="add_attendence_btn_txt">Add Attendance</string>
     <string name="view_attendence_btn_text">View Attendance</string>
     <string name="attendance_checkbox_text">Attendance</string>
-    <string name="attendance_count_hint">Total :</string>
+    <string name="attendance_count_hint">Total : </string>
+    <string name="attendance_view_btn">Attendance View</string>
+    <string name="enter_date_here">Enter Date Here (DD-MM-YYYY)</string>
+    <string name="enter_period_id_here">Enter period ID here</string>
+    <string name="submit_btn_common">Submit</string>
+    <string name="enter_class_id_here">Enter Class ID here</string>
 </resources>
