@@ -56,7 +56,7 @@ public class StudentHolder extends RecyclerView.ViewHolder {
 
     // get and set the status of attendance of that student
     public void setCheck(final String roll, final String date, final String classId, final String periodId) {
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Order roll -> classId -> date -> periodId
@@ -109,13 +109,9 @@ public class StudentHolder extends RecyclerView.ViewHolder {
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                boolean attendance;
                 if (dataSnapshot.hasChild(roll)) {
                     if (dataSnapshot.child(roll).hasChild("count")) {
-                        // TODO: Solve count bug
                         count = (long) dataSnapshot.child(roll).child("count").getValue();
-                        /*attendance = (boolean) dataSnapshot.child(classId).child(date).child(periodId).getValue();
-                        if (attendance == status) {*/
                         if (status) {
                             reference.child(roll).child("count").setValue(count + 1);
                         } else {
@@ -125,7 +121,6 @@ public class StudentHolder extends RecyclerView.ViewHolder {
                                 reference.child(roll).child("count").setValue(count - 1);
                             }
                         }
-                        //}
                     } else {
                         if (status) {
                             reference.child(roll).child("count").setValue(1);

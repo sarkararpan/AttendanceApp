@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -48,6 +50,7 @@ public class AttendanceActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.student_list_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     @Override
@@ -60,7 +63,7 @@ public class AttendanceActivity extends AppCompatActivity {
                 holder.setName(model.getName());
                 holder.setSid(String.valueOf(model.getSid()));
                 holder.setCheck(String.valueOf(model.getSid()), classDate, classId, classPeriod);
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Attendance");
+                Query reference = FirebaseDatabase.getInstance().getReference("Attendance");
 
                 // Use normal value event listener here, otherwise updated count will not properly show.
                 reference.addValueEventListener(new ValueEventListener() {
@@ -83,10 +86,10 @@ public class AttendanceActivity extends AppCompatActivity {
 
                     }
                 });
-
-                holder.getCheck().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                holder.getCheck().setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    public void onClick(View v) {
+                        final boolean isChecked = holder.getCheck().isChecked();
                         holder.updateCheck(String.valueOf(model.getSid()), classDate, classId, classPeriod, isChecked);
                     }
                 });
