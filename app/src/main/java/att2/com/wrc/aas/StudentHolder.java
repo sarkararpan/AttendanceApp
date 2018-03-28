@@ -80,8 +80,11 @@ public class StudentHolder extends RecyclerView.ViewHolder {
     }
 
     // Update the attendance when the checkbox status is changed
+    // TODO: Maybe pass the date string and the period here
     public void updateCheck(final String roll, final boolean status) {
         reference.child(roll).child("status").setValue(status);
+
+        // TODO: Add date string option here
 
         // Use single value event listener here, important.
         // Otherwise this will update infinite times.
@@ -90,6 +93,7 @@ public class StudentHolder extends RecyclerView.ViewHolder {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.hasChild(roll)) {
                     if(dataSnapshot.child(roll).hasChild("count")) {
+                        // TODO: Optimize
                         count = (long) dataSnapshot.child(roll).child("count").getValue();
                         if(status) {
                             reference.child(roll).child("count").setValue(count + 1);
@@ -110,6 +114,7 @@ public class StudentHolder extends RecyclerView.ViewHolder {
                 }
             }
 
+            // TODO: Use proper logging here
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
