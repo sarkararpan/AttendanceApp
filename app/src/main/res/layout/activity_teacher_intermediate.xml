@@ -60,13 +60,28 @@
             android:focusable="false"
             android:fontFamily="@font/roboto_light"
             android:hint="@string/enter_date_here" />
-
-        <EditText
-            android:id="@+id/teacher_period_field"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_light"
-            android:hint="@string/enter_period_id_here" />
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_light"
+                style="@style/Base.TextAppearance.AppCompat.Body1"
+                android:padding="8dp"
+                android:text="@string/period_id_prompt"/>
+            <Spinner
+                android:id="@+id/teacher_period_field"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_light" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/submit_teacher_intermediate"
