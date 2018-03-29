@@ -5,23 +5,37 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class TeacherIntermediateActivity extends AppCompatActivity {
 
-    EditText periodField;
+    Spinner periodSpinner;
     EditText dateField;
     EditText classField;
     Button submitBtn;
 
+    String period;
+    List<String> classIds;
+
+    Spinner.OnItemSelectedListener periodOnItemSelectedListener;
+    
     private AwesomeValidation awesomeValidation;
 
     private DatePickerDialog.OnDateSetListener onDateSetListener;
@@ -32,14 +46,34 @@ public class TeacherIntermediateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_intermediate);
 
-        periodField = findViewById(R.id.teacher_period_field);
+        periodSpinner = findViewById(R.id.teacher_period_field);
         classField = findViewById(R.id.teacher_class_field);
         dateField = findViewById(R.id.teacher_date_field);
         submitBtn = findViewById(R.id.submit_teacher_intermediate);
 
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
+                TeacherIntermediateActivity.this,
+                R.array.periods,
+                R.layout.spinner_item);
+        spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
+        periodSpinner.setAdapter(spinnerAdapter);
+
+        periodOnItemSelectedListener = new Spinner.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                period = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        };
+
+        periodSpinner.setOnItemSelectedListener(periodOnItemSelectedListener);
+
         awesomeValidation = new AwesomeValidation(ValidationStyle.COLORATION);
 
-        awesomeValidation.addValidation(periodField, RegexTemplate.NOT_EMPTY, "Period should not be empty");
         awesomeValidation.addValidation(dateField, RegexTemplate.NOT_EMPTY, "Date should not be empty");
         awesomeValidation.addValidation(classField, RegexTemplate.NOT_EMPTY, "Class should not be empty");
     }
@@ -79,7 +113,7 @@ public class TeacherIntermediateActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(awesomeValidation.validate()) {
                     Intent intent = new Intent(TeacherIntermediateActivity.this, AttendanceActivity.class);
-                    intent.putExtra("period", periodField.getText().toString().toUpperCase());
+                    intent.putExtra("period", period);
                     intent.putExtra("date", dateField.getText().toString());
                     intent.putExtra("class", classField.getText().toString().toUpperCase());
                     startActivity(intent);

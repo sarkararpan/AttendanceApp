@@ -11,38 +11,43 @@
         android:padding="8dp">
 
         <TextView
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:id="@+id/student_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/roboto_medium"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <TextView
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:id="@+id/student_id"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/roboto"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <CheckBox
                 android:id="@+id/attendance_check"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
                 android:text="@string/attendance_checkbox_text" />
+
             <TextView
                 android:id="@+id/student_attendance_count"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:textAlignment="textEnd"/>
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/roboto"
+                android:textAlignment="textEnd" />
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

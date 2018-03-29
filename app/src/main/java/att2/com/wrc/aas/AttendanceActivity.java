@@ -57,18 +57,20 @@ public class AttendanceActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull final StudentHolder holder, int position, @NonNull final Student model) {
 
+                final String studentIdKey = String.valueOf(getRef(position).getKey());
+
                 holder.setName(model.getName());
-                holder.setSid(String.valueOf(model.getSid()));
-                holder.setCheck(String.valueOf(model.getSid()), classDate, classId, classPeriod);
+                holder.setSid(studentIdKey);
+                holder.setCheck(studentIdKey, classDate, classId, classPeriod);
                 Query reference = FirebaseDatabase.getInstance().getReference("Attendance");
 
                 // Use normal value event listener here, otherwise updated count will not properly show.
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChild(String.valueOf(model.getSid()))) {
-                            if (dataSnapshot.child(String.valueOf(model.getSid())).hasChild("count")) {
-                                holder.setCountView(String.valueOf((long) dataSnapshot.child(String.valueOf(model.getSid()))
+                        if (dataSnapshot.hasChild(studentIdKey)) {
+                            if (dataSnapshot.child(studentIdKey).hasChild("count")) {
+                                holder.setCountView(String.valueOf((long) dataSnapshot.child(studentIdKey)
                                         .child("count").getValue()));
                             } else {
                                 holder.setCountView("0");
@@ -87,7 +89,7 @@ public class AttendanceActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final boolean isChecked = holder.getCheck().isChecked();
-                        holder.updateCheck(String.valueOf(model.getSid()), classDate, classId, classPeriod, isChecked);
+                        holder.updateCheck(String.valueOf(studentIdKey), classDate, classId, classPeriod, isChecked);
                     }
                 });
 

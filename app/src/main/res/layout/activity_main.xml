@@ -3,32 +3,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/primary_dark_accent_gradient"
     tools:context="att2.com.wrc.aas.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_margin="16dp"
         android:orientation="vertical">
-        <Button
-            android:id="@+id/teacher_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:layout_gravity="center"
-            android:layout_margin="8dp"
-            android:text="@string/teacher_btn_string"
-            android:textStyle="bold"/>
 
-        <Button
-            android:id="@+id/student_btn"
-            android:layout_width="wrap_content"
-            android:padding="16dp"
-            android:layout_gravity="center"
-            android:layout_margin="8dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/student_btn_string"
-            android:textStyle="bold"/>
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/student_id_field"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/light_field_background"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="center"
+                android:hint="@string/enter_student_id_here"
+                android:padding="16dp"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorLight" />
+
+            <Button
+                android:id="@+id/student_details_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:padding="16dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_black"
+                android:background="@drawable/btn_background_accent"
+                android:text="@string/submit_btn_common" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/teacher_view_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/teacher_prompt_text"
+            android:gravity="center"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
+            android:fontFamily="@font/roboto"
+            android:clickable="true" />
     </LinearLayout>
 </RelativeLayout>

@@ -4,82 +4,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="att2.com.wrc.aas.StudentActivity">
-
     <LinearLayout
-        android:id="@+id/student_fields"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/student_id_field"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="8dp"
-            android:hint="@string/enter_student_id_here" />
-
-        <Button
-            android:id="@+id/submit_student_id"
-            android:layout_margin="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/submit_btn_common" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_below="@id/student_fields"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:padding="8dp"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/student_name_view"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Aurghyadip Kundu"
+            android:fontFamily="@font/roboto_black"
             android:gravity="center"
-            android:textStyle="bold"
-            android:textAllCaps="true"
-            style="@style/Base.TextAppearance.AppCompat.Body1"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/student_id_view"
+            style="@style/Base.TextAppearance.AppCompat.Body2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="16500214006"
+            android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            style="@style/Base.TextAppearance.AppCompat.Body2"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
         <TextView
             android:id="@+id/student_college_id_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_light"
             android:gravity="center"
-            android:text="IT/14-15/005"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
         <TextView
             android:id="@+id/student_semester_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_light"
             android:gravity="center"
-            android:text="8th Semester"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
         <TextView
             android:id="@+id/student_total_attendance_view"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="12"
-            android:gravity="center"
             android:layout_marginTop="20dp"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            style="@style/Base.TextAppearance.AppCompat.Body1"
-            android:textColor="@color/colorAccent" />
+            android:fontFamily="@font/roboto_black"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="40sp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Total Attendance"
+            android:text="@string/total_attendance"
             android:textAllCaps="true"/>
     </LinearLayout>
 

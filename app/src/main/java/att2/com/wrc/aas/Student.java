@@ -5,31 +5,30 @@ package att2.com.wrc.aas;
  */
 
 public class Student {
-    private long sid;
     private String name;
+    private long semester;
+    private  String cid;
+
 
     public Student() {
     }
 
-    public Student(long sid, String name) {
-
-        this.sid = sid;
+    public Student(String name, long semester, String cid) {
         this.name = name;
+        this.semester = semester;
+        this.cid = cid;
     }
 
-    public long getSid() {
-        return sid;
-    }
 
     public String getName() {
         return name;
     }
 
-    public void setSid(long sid) {
-        this.sid = sid;
+    public long getSemester() {
+        return semester;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getCid() {
+        return cid;
     }
 }
