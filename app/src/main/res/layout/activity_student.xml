@@ -1,22 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="att2.com.wrc.aas.StudentActivity">
 
-    <EditText
+    <LinearLayout
+        android:id="@+id/student_fields"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_student_id_here"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal">
 
-        />
-    <Button
-        android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/student_id_field"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:hint="@string/enter_student_id_here" />
+
+        <Button
+            android:id="@+id/submit_student_id"
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/submit_btn_common" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@id/student_fields"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
-        android:id="@+id/submitStudentId"/>
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/student_name_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Aurghyadip Kundu"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            style="@style/Base.TextAppearance.AppCompat.Body1"/>
+        <TextView
+            android:id="@+id/student_id_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="16500214006"
+            android:gravity="center"
+            style="@style/Base.TextAppearance.AppCompat.Body2"/>
+        <TextView
+            android:id="@+id/student_college_id_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="IT/14-15/005"/>
+        <TextView
+            android:id="@+id/student_semester_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="8th Semester"/>
+        <TextView
+            android:id="@+id/student_total_attendance_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="12"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
+            android:textColor="@color/colorAccent" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Total Attendance"
+            android:textAllCaps="true"/>
+    </LinearLayout>
 
-</LinearLayout>
+
+</RelativeLayout>
+

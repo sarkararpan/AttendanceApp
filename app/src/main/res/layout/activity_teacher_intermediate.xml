@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="att2.com.wrc.aas.TeacherIntermediateActivity">
+
+    <TextView
+        android:id="@+id/teacher_view_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="@string/teacher_view_text"
+        android:textAllCaps="true"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        style="@style/Base.TextAppearance.AppCompat.Body1"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="16dp"
+        android:layout_below="@id/teacher_view_text">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_class_id_here"
+            android:id="@+id/teacher_class_field"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="@string/enter_date_here"
+            android:id="@+id/teacher_date_field"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_period_id_here"
+            android:id="@+id/teacher_period_field"/>
+
+        <Button
+            android:id="@+id/submit_teacher_intermediate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingStart="20dp"
+            android:textColor="#ffffff"
+            android:paddingEnd="20dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_background_accent"
+            android:text="@string/submit_btn_common"/>
+    </LinearLayout>
+</RelativeLayout>
