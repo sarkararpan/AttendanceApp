@@ -2,8 +2,8 @@
     <string name="app_name">AAS</string>
     <string name="teacher_btn_string">Teacher</string>
     <string name="student_btn_string">Student</string>
-    <string name="enter_student_id_here">Enter Student Id Here</string>
-    <string name="teacher_view_text">Teacher View</string>
+    <string name="enter_student_id_here">Enter Student ID Here</string>
+    <string name="teacher_view_text">Welcome</string>
     <string name="attendance_checkbox_text">Attendance</string>
     <string name="attendance_count_hint">Total : </string>
     <string name="attendance_view_btn">Attendance View</string>
@@ -12,4 +12,5 @@
     <string name="submit_btn_common">Submit</string>
     <string name="enter_class_id_here">Enter Class ID here</string>
     <string name="total_attendance">Total Attendance</string>
+    <string name="teacher_prompt_text"><u>Are you a teacher? Click here!</u></string>
 </resources>

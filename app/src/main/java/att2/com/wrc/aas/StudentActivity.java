@@ -64,7 +64,6 @@ public class StudentActivity extends AppCompatActivity {
                                 cidView.setText(String.valueOf(student.getCid()));
                                 s="Semester : " +String.valueOf(student.getSemester());
                                 semView.setText(s);
-                                studentDetailsLayout.setVisibility(View.VISIBLE);
                             }
                         }
                     }
