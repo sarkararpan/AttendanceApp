@@ -19,6 +19,7 @@
             android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/student_id_field"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -32,6 +33,7 @@
                 android:textColorHint="@color/colorLight" />
 
             <Button
+                android:id="@+id/student_details_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"

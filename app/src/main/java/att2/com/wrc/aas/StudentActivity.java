@@ -20,23 +20,16 @@ public class StudentActivity extends AppCompatActivity {
     private TextView countView;
     private TextView cidView;
     private TextView semView;
-    private LinearLayout studentDetailsLayout;
 
-    private EditText studentIdField;
-    private Button submitBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
 
-        studentDetailsLayout = findViewById(R.id.student_fields);
-
         studentNameView = findViewById(R.id.student_name_view);
         studentIdView = findViewById(R.id.student_id_view);
         countView = findViewById(R.id.student_total_attendance_view);
-        studentIdField = findViewById(R.id.student_id_field);
-        submitBtn = findViewById(R.id.submit_student_id);
         cidView = findViewById(R.id.student_college_id_view);
         semView = findViewById(R.id.student_semester_view);
 
@@ -46,48 +39,43 @@ public class StudentActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        submitBtn.setOnClickListener(new View.OnClickListener() {
+        final String studentId = getIntent().getStringExtra("studentId");
+        DatabaseReference studentRef = FirebaseDatabase.getInstance().getReference("Students");
+        DatabaseReference attendRef = FirebaseDatabase.getInstance().getReference("Attendance");
+        studentRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                final String studentId = studentIdField.getText().toString();
-                DatabaseReference studentRef = FirebaseDatabase.getInstance().getReference("Students");
-                DatabaseReference attendRef =  FirebaseDatabase.getInstance().getReference("Attendance");
-                studentRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChild(studentId)){
-                            Student student = dataSnapshot.child(studentId).getValue(Student.class);
-                            if(student!=null){
-                                String s;
-                                studentNameView.setText(student.getName());
-                                studentIdView.setText(studentId);
-                                cidView.setText(String.valueOf(student.getCid()));
-                                s="Semester : " +String.valueOf(student.getSemester());
-                                semView.setText(s);
-                            }
-                        }
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild(studentId)) {
+                    Student student = dataSnapshot.child(studentId).getValue(Student.class);
+                    if (student != null) {
+                        String s;
+                        studentNameView.setText(student.getName());
+                        studentIdView.setText(studentId);
+                        cidView.setText(String.valueOf(student.getCid()));
+                        s = "Semester : " + String.valueOf(student.getSemester());
+                        semView.setText(s);
                     }
+                }
+            }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+        attendRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild(studentId)) {
+                    if (dataSnapshot.child(studentId).hasChild("count")) {
+                        countView.setText(String.valueOf((long) dataSnapshot.child(studentId).child("count").getValue()));
                     }
-                });
-                attendRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.hasChild(studentId)){
-                            if(dataSnapshot.child(studentId).hasChild("count")){
-                                countView.setText(String.valueOf((long) dataSnapshot.child(studentId).child("count").getValue()));
-                            }
-                        }
-                    }
+                }
+            }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
             }
         });
     }
