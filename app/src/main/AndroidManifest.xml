@@ -16,10 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StudentActivity" />
-        <activity android:name=".TeacherActivity" />
-        <activity android:name=".TeacherIntermediateActivity" />
-        <activity android:name=".AttendanceActivity"></activity>
+        <activity
+            android:name=".StudentActivity"
+            android:label="Student Details"/>
+        <activity
+            android:name=".TeacherActivity"
+            android:label="Teacher View"/>
+        <activity
+            android:name=".TeacherIntermediateActivity"
+            android:label="Teacher View"/>
+        <activity
+            android:name=".AttendanceActivity"
+            android:label="Attendance View"/>
     </application>
 
 </manifest>

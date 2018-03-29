@@ -62,7 +62,6 @@ public class StudentHolder extends RecyclerView.ViewHolder {
                 // Order roll -> classId -> date -> periodId
                 if (dataSnapshot.hasChild(roll)) {
                     if (dataSnapshot.child(roll).hasChild(classId)) {
-                        // TODO: Make dynamic
                         if (dataSnapshot.child(roll).child(classId).hasChild(date)) {
                             if (dataSnapshot.child(roll).child(classId).child(date).hasChild(periodId)) {
                                 check.setChecked((boolean) dataSnapshot
