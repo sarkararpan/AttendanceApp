@@ -17,7 +17,8 @@
         android:text="@string/teacher_view_text"
         android:textAllCaps="true"
         android:textSize="40sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        style="@style/Base.TextAppearance.AppCompat.Body1"/>
 
 
     <LinearLayout
@@ -34,6 +35,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="false"
             android:hint="@string/enter_date_here"
             android:id="@+id/teacher_date_field"/>
         <EditText
