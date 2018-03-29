@@ -9,7 +9,7 @@
     <string name="attendance_checkbox_text">Attendance</string>
     <string name="attendance_count_hint">Total : </string>
     <string name="attendance_view_btn">Attendance View</string>
-    <string name="enter_date_here">Enter Date Here (DD-MM-YYYY)</string>
+    <string name="enter_date_here">Select Date</string>
     <string name="enter_period_id_here">Enter period ID here</string>
     <string name="submit_btn_common">Submit</string>
     <string name="enter_class_id_here">Enter Class ID here</string>

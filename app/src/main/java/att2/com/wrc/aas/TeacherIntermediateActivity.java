@@ -4,22 +4,25 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+
 import java.util.Calendar;
 
 public class TeacherIntermediateActivity extends AppCompatActivity {
-
-    private static final String TAG = "TeacherIntermediate";
 
     EditText periodField;
     EditText dateField;
     EditText classField;
     Button submitBtn;
+
+    private AwesomeValidation awesomeValidation;
 
     private DatePickerDialog.OnDateSetListener onDateSetListener;
     String date;
@@ -33,6 +36,12 @@ public class TeacherIntermediateActivity extends AppCompatActivity {
         classField = findViewById(R.id.teacher_class_field);
         dateField = findViewById(R.id.teacher_date_field);
         submitBtn = findViewById(R.id.submit_teacher_intermediate);
+
+        awesomeValidation = new AwesomeValidation(ValidationStyle.COLORATION);
+
+        awesomeValidation.addValidation(periodField, RegexTemplate.NOT_EMPTY, "Period should not be empty");
+        awesomeValidation.addValidation(dateField, RegexTemplate.NOT_EMPTY, "Date should not be empty");
+        awesomeValidation.addValidation(classField, RegexTemplate.NOT_EMPTY, "Class should not be empty");
     }
 
     @Override
@@ -68,11 +77,13 @@ public class TeacherIntermediateActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TeacherIntermediateActivity.this, AttendanceActivity.class);
-                intent.putExtra("period", periodField.getText().toString());
-                intent.putExtra("date", dateField.getText().toString());
-                intent.putExtra("class", classField.getText().toString());
-                startActivity(intent);
+                if(awesomeValidation.validate()) {
+                    Intent intent = new Intent(TeacherIntermediateActivity.this, AttendanceActivity.class);
+                    intent.putExtra("period", periodField.getText().toString().toUpperCase());
+                    intent.putExtra("date", dateField.getText().toString());
+                    intent.putExtra("class", classField.getText().toString().toUpperCase());
+                    startActivity(intent);
+                }
             }
         });
 
