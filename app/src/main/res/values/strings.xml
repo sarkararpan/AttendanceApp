@@ -11,4 +11,5 @@
     <string name="enter_period_id_here">Enter period ID here</string>
     <string name="submit_btn_common">Submit</string>
     <string name="enter_class_id_here">Enter Class ID here</string>
+    <string name="total_attendance">Total Attendance</string>
 </resources>

@@ -33,13 +33,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:padding="8dp"
+        android:visibility="invisible"
         android:orientation="vertical">
         <TextView
             android:id="@+id/student_name_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:text="Aurghyadip Kundu"
             android:gravity="center"
             android:textStyle="bold"
             android:textAllCaps="true"
@@ -49,26 +49,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:text="16500214006"
             android:gravity="center"
             style="@style/Base.TextAppearance.AppCompat.Body2"/>
         <TextView
             android:id="@+id/student_college_id_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="IT/14-15/005"/>
+            android:gravity="center" />
         <TextView
             android:id="@+id/student_semester_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="8th Semester"/>
+            android:gravity="center" />
         <TextView
             android:id="@+id/student_total_attendance_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="12"
             android:gravity="center"
             android:layout_marginTop="20dp"
             android:textSize="40sp"
@@ -79,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Total Attendance"
+            android:text="@string/total_attendance"
             android:textAllCaps="true"/>
     </LinearLayout>
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +20,7 @@ public class StudentActivity extends AppCompatActivity {
     private TextView countView;
     private TextView cidView;
     private TextView semView;
+    private LinearLayout studentDetailsLayout;
 
     private EditText studentIdField;
     private Button submitBtn;
@@ -27,6 +29,8 @@ public class StudentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
+
+        studentDetailsLayout = findViewById(R.id.student_fields);
 
         studentNameView = findViewById(R.id.student_name_view);
         studentIdView = findViewById(R.id.student_id_view);
@@ -46,9 +50,9 @@ public class StudentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final String studentId = studentIdField.getText().toString();
-                DatabaseReference studentref = FirebaseDatabase.getInstance().getReference("Students");
-                DatabaseReference attendref =  FirebaseDatabase.getInstance().getReference("Attendance");
-                studentref.addListenerForSingleValueEvent(new ValueEventListener() {
+                DatabaseReference studentRef = FirebaseDatabase.getInstance().getReference("Students");
+                DatabaseReference attendRef =  FirebaseDatabase.getInstance().getReference("Attendance");
+                studentRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.hasChild(studentId)){
@@ -56,10 +60,11 @@ public class StudentActivity extends AppCompatActivity {
                             if(student!=null){
                                 String s;
                                 studentNameView.setText(student.getName());
-                                studentIdView.setText(String.valueOf(student.getSid()));
+                                studentIdView.setText(studentId);
                                 cidView.setText(String.valueOf(student.getCid()));
                                 s="Semester : " +String.valueOf(student.getSemester());
                                 semView.setText(s);
+                                studentDetailsLayout.setVisibility(View.VISIBLE);
                             }
                         }
                     }
@@ -69,7 +74,7 @@ public class StudentActivity extends AppCompatActivity {
 
                     }
                 });
-                attendref.addListenerForSingleValueEvent(new ValueEventListener() {
+                attendRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if(dataSnapshot.hasChild(studentId)){
