@@ -25,7 +25,11 @@ public class LoginActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, TeacherActivity.class));
+                Intent intent = new Intent(LoginActivity.this, TeacherActivity.class);
+                //Clear the back stack when logging in,
+                // to be implemented properly once Auth is implemented
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
     }

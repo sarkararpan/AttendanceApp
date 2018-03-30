@@ -3,7 +3,6 @@ package att2.com.wrc.aas;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,16 +11,14 @@ import android.widget.TextView;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.Map;
-
-// TODO: Add proper navigation
-
+/*
+* MainActivity, Edited by Aurghya
+* This Activity will not be there once the user is logged in,
+* if the user is logged in, then an intent to TeacherActivity
+* will be started with finish() so that this activity can't be
+* accessed via the back stack.
+*/
 public class MainActivity extends AppCompatActivity {
 
     private TextView teacherViewLink;
@@ -51,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         studentDetailsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Validating the data that is entered by the student
                 if(awesomeValidation.validate()) {
                     Intent intent = new Intent(MainActivity.this, StudentActivity.class);
                     intent.putExtra("studentId", studentIdField.getText().toString());
@@ -59,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Link to the LoginActivity
         teacherViewLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
