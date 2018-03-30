@@ -39,6 +39,9 @@
             android:name=".LoginActivity"
             android:label="Login"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ReportActivity"
+            android:label="Attendance Report"/>
     </application>
 
 </manifest>

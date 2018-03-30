@@ -16,6 +16,7 @@
     <string name="login_e_mail_here_text">Enter e-mail here</string>
     <string name="enter_password">Enter password</string>
     <string name="student_go_back_text"><u>Don\'t have any idea of this? Click Here!</u></string>
+    <string name="teacher_login_text">Teacher Login</string>
     <string-array name="periods">
         <item>P1</item>
         <item>P2</item>
