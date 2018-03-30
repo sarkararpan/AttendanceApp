@@ -2,7 +2,7 @@
 
 1. Make a subjects node under the root child node and store date wise attendance information under that for at a glance viewing of class-wise attendance of that subject.
 
-   ### Database Structure
+   **Database Structure**
 
    ```json
    "Subjects" : {
@@ -17,7 +17,7 @@
    }
    ```
 
-   ### Concept method
+   **Concept Method**
 
    ```java
    public void updateSubjectAttendance(final String date, final String classId, final boolean status) {
@@ -56,4 +56,9 @@
        });
    }
    ```
-2. ---
+
+2. Contrary to above thing, we can also make a date and period wise attendance record, which we can easily compare with existing routine to check the attendance of a subject. To enter the view, only the date needs to be provided. 
+
+   -  To scale up, a separate node with the routine or schedule can be created, and upon entering the date it'll fetch the day from calendar and the update the period with the class. 
+
+3. ​
