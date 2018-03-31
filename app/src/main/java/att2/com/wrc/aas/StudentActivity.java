@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -77,7 +78,7 @@ public class StudentActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Toast.makeText(StudentActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
         attendRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -99,7 +100,7 @@ public class StudentActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Toast.makeText(StudentActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
