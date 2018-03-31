@@ -26,6 +26,7 @@ public class StudentActivity extends AppCompatActivity {
     private TextView countView;
     private TextView cidView;
     private TextView semView;
+    private TextView totalAttendanceTextView;
 
 
     @Override
@@ -38,6 +39,7 @@ public class StudentActivity extends AppCompatActivity {
         countView = findViewById(R.id.student_total_attendance_view);
         cidView = findViewById(R.id.student_college_id_view);
         semView = findViewById(R.id.student_semester_view);
+        totalAttendanceTextView = findViewById(R.id.total_attendance_hint);
 
 
     }
@@ -75,7 +77,14 @@ public class StudentActivity extends AppCompatActivity {
                 if (dataSnapshot.hasChild(studentId)) {
                     if (dataSnapshot.child(studentId).hasChild("count")) {
                         countView.setText(String.valueOf((long) dataSnapshot.child(studentId).child("count").getValue()));
+                        totalAttendanceTextView.setVisibility(View.VISIBLE);
+                    } else {
+                        countView.setText("0");
+                        totalAttendanceTextView.setVisibility(View.VISIBLE);
                     }
+                } else {
+                    countView.setText("0");
+                    totalAttendanceTextView.setVisibility(View.VISIBLE);
                 }
             }
 

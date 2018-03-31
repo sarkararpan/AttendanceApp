@@ -3,23 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_solid_primary_dark"
     tools:context="att2.com.wrc.aas.StudentActivity">
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/student_name_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_above="@id/student_details_texts"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_black"
+        android:gravity="center"
         android:padding="8dp"
-        android:orientation="vertical">
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/colorLight"
+        android:textSize="35sp" />
 
-        <TextView
-            android:id="@+id/student_name_view"
-            style="@style/Base.TextAppearance.AppCompat.Body1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_black"
-            android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="20sp" />
+    <LinearLayout
+        android:id="@+id/student_details_texts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="8dp"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/student_id_view"
@@ -28,40 +36,49 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/colorLight"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/student_college_id_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/roboto_light"
             android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:textColor="@color/colorLight"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/student_semester_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/roboto_light"
             android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:textColor="@color/colorLight"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/student_total_attendance_view"
-            style="@style/Base.TextAppearance.AppCompat.Body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/roboto_black"
             android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="40sp" />
+            android:textColor="@color/colorLight"
+            android:textSize="50sp" />
+
         <TextView
+            android:id="@+id/total_attendance_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             android:gravity="center"
             android:text="@string/total_attendance"
-            android:textAllCaps="true"/>
+            android:textAllCaps="true"
+            android:textColor="@color/colorLight" />
     </LinearLayout>
 
 
