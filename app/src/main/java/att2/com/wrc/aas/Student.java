@@ -2,6 +2,8 @@ package att2.com.wrc.aas;
 
 /**
  * Created by Aurghya on 24-03-2018.
+ * Model class for entries in the Students collection
+ * of the database
  */
 
 public class Student {
@@ -18,7 +20,6 @@ public class Student {
         this.semester = semester;
         this.cid = cid;
     }
-
 
     public String getName() {
         return name;

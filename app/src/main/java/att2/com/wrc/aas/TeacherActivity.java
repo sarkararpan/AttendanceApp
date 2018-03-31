@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * The Landing activity after a teacher is logged in.
+ */
 public class TeacherActivity extends AppCompatActivity {
 
     Button teacherIntermediateBtn;

@@ -4,6 +4,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * ViewHolder for student_report_item
+ * */
 public class ReportHolder extends RecyclerView.ViewHolder{
     private TextView sidView;
     private TextView countView;

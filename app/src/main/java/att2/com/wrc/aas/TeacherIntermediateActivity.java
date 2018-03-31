@@ -15,15 +15,12 @@ import android.widget.Spinner;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
-import java.util.List;
 
+/**
+ * Handles the data collection of ClassID, Date and PeriodID
+ */
 public class TeacherIntermediateActivity extends AppCompatActivity {
 
     Spinner periodSpinner;
@@ -32,7 +29,6 @@ public class TeacherIntermediateActivity extends AppCompatActivity {
     Button submitBtn;
 
     String period;
-    List<String> classIds;
 
     Spinner.OnItemSelectedListener periodOnItemSelectedListener;
     

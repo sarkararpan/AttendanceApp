@@ -19,6 +19,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * This activity is almost same as the Attendance Activity
+ * the only main difference being the view is not a card view
+ * and no checkboxes are there
+ * */
 public class ReportActivity extends AppCompatActivity {
 
     DatabaseReference studentRef;
@@ -32,6 +37,10 @@ public class ReportActivity extends AppCompatActivity {
 
         reportView = findViewById(R.id.report_attendance_view);
         studentRef = FirebaseDatabase.getInstance().getReference("Students");
+
+        // RecyclerView with LinearLayout Manager is same as list view.
+        // Where the items are appended at the bottom of previous item
+        // based on the orientation of the device or the application.
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, layoutManager.getOrientation());
         reportView.addItemDecoration(dividerItemDecoration);
@@ -57,7 +66,8 @@ public class ReportActivity extends AppCompatActivity {
 
                 Query reference = FirebaseDatabase.getInstance().getReference("Attendance");
 
-                // Use normal value event listener here, otherwise updated count will not properly show.
+                // Use normal value event listener here,
+                // otherwise updated count will not properly show.
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {

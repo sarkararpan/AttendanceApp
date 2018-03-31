@@ -18,12 +18,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-/*
+/**
 * AttendanceActivity, Created by Aurghya
 * This activity is responsible for adding or editing attendance
 * for a specific date. Can only be accessible to teachers.
 * Later on, more security and teacher flags should be added.
-*/
+**/
 public class AttendanceActivity extends AppCompatActivity {
 
     DatabaseReference studentRef;

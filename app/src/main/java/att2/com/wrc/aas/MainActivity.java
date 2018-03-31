@@ -12,13 +12,13 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 
-/*
+/**
 * MainActivity, Edited by Aurghya
 * This Activity will not be there once the user is logged in,
 * if the user is logged in, then an intent to TeacherActivity
 * will be started with finish() so that this activity can't be
 * accessed via the back stack.
-*/
+**/
 public class MainActivity extends AppCompatActivity {
 
     private TextView teacherViewLink;
