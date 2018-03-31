@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="att2.com.wrc.aas">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -41,7 +43,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ReportActivity"
-            android:label="Attendance Report"/>
+            android:label="Attendance Report" />
+        <activity android:name=".SignupActivity"></activity>
     </application>
 
 </manifest>
