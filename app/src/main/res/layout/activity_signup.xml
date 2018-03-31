@@ -1,9 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignupActivity">
+    android:background="@drawable/background_solid_primary_dark"
+    tools:context=".SignUpActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/sign_up_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/sign_up_teachers_only_text"
+        android:fontFamily="@font/roboto_black"
+        android:gravity="center"
+        android:text="Sign Up"
+        android:textAllCaps="true"
+        android:textColor="@color/colorLight"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/sign_up_teachers_only_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/sign_up_fields"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:text="For Teachers Only"
+        android:textAllCaps="true"
+        android:textColor="@color/colorLight"
+        android:textSize="16sp" />
+
+
+    <LinearLayout
+        android:id="@+id/sign_up_fields"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/light_field_background"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="center"
+            android:hint="Enter Name Here"
+            android:padding="16dp"
+            android:textColorHint="@color/colorLight" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/light_field_background"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="center"
+            android:hint="Enter Teacher ID Here"
+            android:padding="16dp"
+            android:textColorHint="@color/colorLight" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/light_field_background"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="center"
+            android:hint="Enter your e-mail here"
+            android:inputType="textEmailAddress"
+            android:padding="16dp"
+            android:textColorHint="@color/colorLight" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/light_field_background"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="center"
+            android:hint="Enter password"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textColorHint="@color/colorLight" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/light_field_background"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="center"
+            android:hint="Confirm password"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textColorHint="@color/colorLight" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sign_up_fields"
+        android:background="?android:attr/selectableItemBackground"
+        android:fontFamily="@font/roboto_black"
+        android:padding="10dp"
+        android:text="@string/submit_btn_common"
+        android:textColor="@color/colorLight"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/submit_sign_up"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="Already have an Account? Click here!"
+        android:textColor="@color/colorBlack" />
+</RelativeLayout>

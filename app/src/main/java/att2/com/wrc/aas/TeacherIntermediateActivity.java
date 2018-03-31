@@ -85,6 +85,7 @@ public class TeacherIntermediateActivity extends AppCompatActivity {
             dateField.setEnabled(false);
             classField.setEnabled(false);
             periodSpinner.setEnabled(false);
+            submitBtn.setEnabled(false);
         }
 
         dateField.setOnClickListener(new View.OnClickListener() {
