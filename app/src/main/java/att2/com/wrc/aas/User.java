@@ -1,21 +1,21 @@
 package att2.com.wrc.aas;
 
-public class Teacher {
+public class User {
     private String name;
     private String email;
-    private String lastclass;
+    private String lastClass;
     private boolean verified;
-    private String accesslevel;
+    private String accessLevel;
 
-    public Teacher() {
+    public User() {
     }
 
-    public Teacher(String name, String email, String lastclass, boolean verified, String accesslevel) {
+    public User(String name, String email, String lastClass, boolean verified, String accessLevel) {
         this.name = name;
         this.email = email;
-        this.lastclass = lastclass;
+        this.lastClass = lastClass;
         this.verified = verified;
-        this.accesslevel = accesslevel;
+        this.accessLevel = accessLevel;
     }
 
     public String getName() {
@@ -26,16 +26,16 @@ public class Teacher {
         return email;
     }
 
-    public String getLastclass() {
-        return lastclass;
+    public String getLastClass() {
+        return lastClass;
     }
 
     public boolean isVerified() {
         return verified;
     }
 
-    public String getAccesslevel() {
-        return accesslevel;
+    public String getAccessLevel() {
+        return accessLevel;
     }
 
     public void setName(String name) {
@@ -46,8 +46,8 @@ public class Teacher {
         this.email = email;
     }
 
-    public void setLastclass(String lastclass) {
-        this.lastclass = lastclass;
+    public void setLastClass(String lastClass) {
+        this.lastClass = lastClass;
     }
 
     public void setVerified(boolean verified) {
