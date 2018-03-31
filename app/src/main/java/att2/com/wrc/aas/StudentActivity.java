@@ -60,7 +60,16 @@ public class StudentActivity extends AppCompatActivity {
                         studentNameView.setText(student.getName());
                         studentIdView.setText(studentId);
                         cidView.setText(String.valueOf(student.getCid()));
-                        s = "Semester : " + String.valueOf(student.getSemester());
+                        // Change the string based on the semester
+                        if(student.getSemester() == 1) {
+                            s = String.valueOf(student.getSemester()) + "st Semester";
+                        } else if(student.getSemester() == 2) {
+                            s = String.valueOf(student.getSemester()) + "nd Semester";
+                        } else if(student.getSemester() == 3) {
+                            s = String.valueOf(student.getSemester()) + "rd Semester";
+                        } else {
+                            s = String.valueOf(student.getSemester()) + "th Semester";
+                        }
                         semView.setText(s);
                     }
                 }
