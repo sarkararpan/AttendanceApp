@@ -27,15 +27,18 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/login_email_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/light_field_background"
             android:fontFamily="@font/roboto_light"
             android:hint="@string/login_e_mail_here_text"
+            android:inputType="textEmailAddress"
             android:padding="16dp"
             android:textColorHint="@color/colorLight" />
 
         <EditText
+            android:id="@+id/login_password_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
