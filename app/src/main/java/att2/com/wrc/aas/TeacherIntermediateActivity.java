@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
@@ -77,6 +78,12 @@ public class TeacherIntermediateActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Calendar calendar = Calendar.getInstance();
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        if(dayOfWeek == Calendar.SUNDAY || dayOfWeek == Calendar.SATURDAY) {
+            Toast.makeText(this, "No classes on Saturdays and Sundays", Toast.LENGTH_SHORT).show();
+            dateField.setEnabled(false);
+        }
 
         dateField.setOnClickListener(new View.OnClickListener() {
             @Override
