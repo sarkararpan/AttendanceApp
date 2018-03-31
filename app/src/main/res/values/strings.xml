@@ -17,6 +17,7 @@
     <string name="enter_password">Enter password</string>
     <string name="student_go_back_text"><u>Don\'t have any idea of this? Click Here!</u></string>
     <string name="teacher_login_text">Teacher Login</string>
+    <string name="login_to_sign_up_text"><u>Don\'t have an Account? Sign Up!</u></string>
     <string-array name="periods">
         <item>P1</item>
         <item>P2</item>

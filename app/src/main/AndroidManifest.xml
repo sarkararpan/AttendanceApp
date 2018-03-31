@@ -44,7 +44,7 @@
         <activity
             android:name=".ReportActivity"
             android:label="Attendance Report" />
-        <activity android:name=".SignupActivity"></activity>
+        <activity android:name=".SignUpActivity"></activity>
     </application>
 
 </manifest>
