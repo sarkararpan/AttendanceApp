@@ -59,26 +59,35 @@
             android:gravity="center"
             android:textColor="@color/colorLight"
             android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/student_total_attendance_view"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/student_details_border"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/roboto_black"
-            android:gravity="center"
-            android:textColor="@color/colorLight"
-            android:textSize="50sp" />
-
-        <TextView
-            android:id="@+id/total_attendance_hint"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:visibility="invisible"
-            android:gravity="center"
-            android:text="@string/total_attendance"
-            android:textAllCaps="true"
-            android:textColor="@color/colorLight" />
+            android:padding="16dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/border">
+            <TextView
+                android:id="@+id/student_total_attendance_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_black"
+                android:gravity="center"
+                android:textColor="@color/colorLight"
+                android:textSize="50sp" />
+
+            <TextView
+                android:id="@+id/total_attendance_hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/total_attendance"
+                android:textAllCaps="true"
+                android:textColor="@color/colorLight" />
+        </LinearLayout>
+
     </LinearLayout>
 
 
