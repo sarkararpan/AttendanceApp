@@ -83,6 +83,8 @@ public class TeacherIntermediateActivity extends AppCompatActivity {
         if(dayOfWeek == Calendar.SUNDAY || dayOfWeek == Calendar.SATURDAY) {
             Toast.makeText(this, "No classes on Saturdays and Sundays", Toast.LENGTH_SHORT).show();
             dateField.setEnabled(false);
+            classField.setEnabled(false);
+            periodSpinner.setEnabled(false);
         }
 
         dateField.setOnClickListener(new View.OnClickListener() {
