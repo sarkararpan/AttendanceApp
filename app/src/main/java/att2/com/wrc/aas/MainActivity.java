@@ -12,8 +12,13 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 
-// TODO: Add proper navigation
-
+/**
+* MainActivity, Edited by Aurghya
+* This Activity will not be there once the user is logged in,
+* if the user is logged in, then an intent to TeacherActivity
+* will be started with finish() so that this activity can't be
+* accessed via the back stack.
+**/
 public class MainActivity extends AppCompatActivity {
 
     private TextView teacherViewLink;
@@ -43,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         studentDetailsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Validating the data that is entered by the student
                 if(awesomeValidation.validate()) {
                     Intent intent = new Intent(MainActivity.this, StudentActivity.class);
                     intent.putExtra("studentId", studentIdField.getText().toString());
@@ -51,10 +57,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Link to the LoginActivity
         teacherViewLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TeacherIntermediateActivity.class));
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
     }

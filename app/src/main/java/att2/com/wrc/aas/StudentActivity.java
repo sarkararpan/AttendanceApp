@@ -14,6 +14,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * Activity for viewing attendance of a single
+ * student when not logged in.
+ * This Activity is solely used by students, while
+ * can also, but is not needed to be used by teachers.
+ */
 public class StudentActivity extends AppCompatActivity {
     private TextView studentNameView;
     private TextView studentIdView;

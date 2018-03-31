@@ -18,7 +18,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-
+/**
+* AttendanceActivity, Created by Aurghya
+* This activity is responsible for adding or editing attendance
+* for a specific date. Can only be accessible to teachers.
+* Later on, more security and teacher flags should be added.
+**/
 public class AttendanceActivity extends AppCompatActivity {
 
     DatabaseReference studentRef;
@@ -40,8 +45,10 @@ public class AttendanceActivity extends AppCompatActivity {
         classId = getIntent().getStringExtra("class");
         classPeriod = getIntent().getStringExtra("period");
 
+        // Init query for getting the students
         Query query = studentRef;
 
+        // Make options for the FirebaserRecyclerAdapter
         options = new FirebaseRecyclerOptions.Builder<Student>()
                 .setQuery(query, Student.class).build();
 
@@ -64,7 +71,8 @@ public class AttendanceActivity extends AppCompatActivity {
                 holder.setCheck(studentIdKey, classDate, classId, classPeriod);
                 Query reference = FirebaseDatabase.getInstance().getReference("Attendance");
 
-                // Use normal value event listener here, otherwise updated count will not properly show.
+                // Use only addValueEventListener() here,
+                // otherwise updated count will not properly show.
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
