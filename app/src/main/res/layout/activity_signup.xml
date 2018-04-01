@@ -10,10 +10,11 @@
         android:id="@+id/sign_up_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/sign_up_teachers_only_text"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentTop="true"
         android:fontFamily="@font/roboto_black"
         android:gravity="center"
-        android:text="Sign Up"
+        android:text="@string/sign_up_text"
         android:textAllCaps="true"
         android:textColor="@color/colorLight"
         android:textSize="30sp" />
@@ -22,11 +23,11 @@
         android:id="@+id/sign_up_teachers_only_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/sign_up_fields"
+        android:layout_below="@id/sign_up_text_view"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/roboto_light"
         android:gravity="center"
-        android:text="For Teachers Only"
+        android:text="@string/for_teachers_only_text"
         android:textAllCaps="true"
         android:textColor="@color/colorLight"
         android:textSize="16sp" />
@@ -36,63 +37,70 @@
         android:id="@+id/sign_up_fields"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/sign_up_teachers_only_text"
         android:orientation="vertical"
         android:padding="16dp">
 
         <EditText
+            android:inputType="text"
+            android:id="@+id/user_name_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/light_field_background"
             android:fontFamily="@font/roboto_light"
             android:gravity="center"
-            android:hint="Enter Name Here"
+            android:hint="@string/enter_name_hint"
             android:padding="16dp"
             android:textColorHint="@color/colorLight" />
 
         <EditText
+            android:inputType="text"
+            android:id="@+id/user_emp_id_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/light_field_background"
             android:fontFamily="@font/roboto_light"
             android:gravity="center"
-            android:hint="Enter Teacher ID Here"
+            android:hint="@string/enter_teacher_id_hint"
             android:padding="16dp"
             android:textColorHint="@color/colorLight" />
 
         <EditText
+            android:id="@+id/user_email_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/light_field_background"
             android:fontFamily="@font/roboto_light"
             android:gravity="center"
-            android:hint="Enter your e-mail here"
+            android:hint="@string/enter_e_mail_hint"
             android:inputType="textEmailAddress"
             android:padding="16dp"
             android:textColorHint="@color/colorLight" />
 
         <EditText
+            android:id="@+id/user_password_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/light_field_background"
             android:fontFamily="@font/roboto_light"
             android:gravity="center"
-            android:hint="Enter password"
+            android:hint="@string/enter_password_hint"
             android:inputType="textPassword"
             android:padding="16dp"
             android:textColorHint="@color/colorLight" />
 
         <EditText
+            android:id="@+id/user_confirm_password_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/light_field_background"
             android:fontFamily="@font/roboto_light"
             android:gravity="center"
-            android:hint="Confirm password"
+            android:hint="@string/confirm_password_hint"
             android:inputType="textPassword"
             android:padding="16dp"
             android:textColorHint="@color/colorLight" />
@@ -110,13 +118,16 @@
         android:textColor="@color/colorLight"
         android:textSize="16sp" />
 
-    <TextView
+    <Button
+        android:id="@+id/sign_up_to_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/submit_sign_up"
+        android:background="?android:attr/selectableItemBackground"
         android:layout_marginTop="8dp"
-        android:clickable="true"
         android:gravity="center"
-        android:text="Already have an Account? Click here!"
-        android:textColor="@color/colorBlack" />
+        android:fontFamily="@font/roboto_light"
+        android:textSize="12sp"
+        android:text="@string/already_have_an_account_btn_text"
+        android:textColor="@color/colorLight" />
 </RelativeLayout>
