@@ -29,6 +29,7 @@ public class TeacherActivity extends AppCompatActivity {
 
     private Button teacherIntermediateBtn;
     private Button generateReportBtn;
+    private Button signOutBtn;
     private FirebaseAuth mAuth;
 
     @Override
@@ -45,6 +46,7 @@ public class TeacherActivity extends AppCompatActivity {
 
         teacherIntermediateBtn = findViewById(R.id.teacher_intermediate_btn);
         generateReportBtn = findViewById(R.id.generate_report_btn);
+        signOutBtn = findViewById(R.id.sign_out_btn);
     }
 
     @Override
@@ -73,6 +75,7 @@ public class TeacherActivity extends AppCompatActivity {
                                 userVerifiedView.setText(getResources().getString(R.string.verified_text));
                                 userVerifiedView.setVisibility(View.VISIBLE);
                             }
+                            findViewById(R.id.teacher_progress_bar).setVisibility(View.GONE);
                         }
                     }
                 }
@@ -96,6 +99,17 @@ public class TeacherActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(TeacherActivity.this, ReportActivity.class));
+            }
+        });
+
+        signOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+                Intent intent = new Intent(TeacherActivity.this, MainActivity.class);
+                //Clear the back stack when logging in
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
     }

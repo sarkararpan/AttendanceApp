@@ -51,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         emailField = findViewById(R.id.login_email_field);
         passwordField = findViewById(R.id.login_password_field);
         Button submitBtn = findViewById(R.id.submit_login);
+        Button loginToSignUpBtn = findViewById(R.id.login_to_sign_up);
 
         awesomeValidation.addValidation(emailField, Patterns.EMAIL_ADDRESS, "Email ID not valid");
         awesomeValidation.addValidation(passwordField, RegexTemplate.NOT_EMPTY, "Password must not be empty");
@@ -61,6 +62,12 @@ public class LoginActivity extends AppCompatActivity {
                 if(awesomeValidation.validate()) {
                     startSignIn();
                 }
+            }
+        });
+        loginToSignUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
             }
         });
     }

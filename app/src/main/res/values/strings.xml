@@ -24,6 +24,14 @@
     <string name="last_class_hint">Last Class : %1s</string>
     <string name="verified_text">Verified</string>
     <string name="sign_out_btn_txt">Sign Out</string>
+    <string name="confirm_password_hint">Confirm password</string>
+    <string name="enter_password_hint">Enter password</string>
+    <string name="enter_e_mail_hint">Enter your e-mail here</string>
+    <string name="enter_teacher_id_hint">Enter Teacher ID Here</string>
+    <string name="enter_name_hint">Enter Name Here</string>
+    <string name="already_have_an_account_btn_text">Already have an Account? Click here!</string>
+    <string name="sign_up_text">Sign Up</string>
+    <string name="for_teachers_only_text">For Teachers Only</string>
     <string-array name="periods">
         <item>P1</item>
         <item>P2</item>

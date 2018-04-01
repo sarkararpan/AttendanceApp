@@ -49,6 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
         confirmPasswordField = findViewById(R.id.user_confirm_password_field);
 
         Button submitBtn = findViewById(R.id.submit_sign_up);
+        Button signUpToLoginBtn = findViewById(R.id.sign_up_to_login);
 
         awesomeValidation.addValidation(nameField, RegexTemplate.NOT_EMPTY, "Name should not be empty");
         awesomeValidation.addValidation(emailField, Patterns.EMAIL_ADDRESS, "Should be a valid email");
@@ -74,6 +75,16 @@ public class SignUpActivity extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                     }
                 }
+            }
+        });
+
+        signUpToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                //Clear the back stack when logging in
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
     }
