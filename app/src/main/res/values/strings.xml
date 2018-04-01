@@ -18,6 +18,12 @@
     <string name="student_go_back_text"><u>Don\'t have any idea of this? Click Here!</u></string>
     <string name="teacher_login_text">Teacher Login</string>
     <string name="login_to_sign_up_text"><u>Don\'t have an Account? Sign Up!</u></string>
+    <string name="attendance_btn_hint">Attendance</string>
+    <string name="report_btn_hint">Report</string>
+    <string name="access_level_hint">Access Level : %1s</string>
+    <string name="last_class_hint">Last Class : %1s</string>
+    <string name="verified_text">Verified</string>
+    <string name="sign_out_btn_txt">Sign Out</string>
     <string-array name="periods">
         <item>P1</item>
         <item>P2</item>
