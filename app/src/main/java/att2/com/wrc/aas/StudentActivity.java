@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,6 +27,7 @@ public class StudentActivity extends AppCompatActivity {
     private TextView countView;
     private TextView cidView;
     private TextView semView;
+    private TextView totalAttendanceTextView;
 
 
     @Override
@@ -38,6 +40,7 @@ public class StudentActivity extends AppCompatActivity {
         countView = findViewById(R.id.student_total_attendance_view);
         cidView = findViewById(R.id.student_college_id_view);
         semView = findViewById(R.id.student_semester_view);
+        totalAttendanceTextView = findViewById(R.id.total_attendance_hint);
 
 
     }
@@ -58,7 +61,16 @@ public class StudentActivity extends AppCompatActivity {
                         studentNameView.setText(student.getName());
                         studentIdView.setText(studentId);
                         cidView.setText(String.valueOf(student.getCid()));
-                        s = "Semester : " + String.valueOf(student.getSemester());
+                        // Change the string based on the semester
+                        if(student.getSemester() == 1) {
+                            s = String.valueOf(student.getSemester()) + "st Semester";
+                        } else if(student.getSemester() == 2) {
+                            s = String.valueOf(student.getSemester()) + "nd Semester";
+                        } else if(student.getSemester() == 3) {
+                            s = String.valueOf(student.getSemester()) + "rd Semester";
+                        } else {
+                            s = String.valueOf(student.getSemester()) + "th Semester";
+                        }
                         semView.setText(s);
                     }
                 }
@@ -66,7 +78,7 @@ public class StudentActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Toast.makeText(StudentActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
         attendRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -75,13 +87,20 @@ public class StudentActivity extends AppCompatActivity {
                 if (dataSnapshot.hasChild(studentId)) {
                     if (dataSnapshot.child(studentId).hasChild("count")) {
                         countView.setText(String.valueOf((long) dataSnapshot.child(studentId).child("count").getValue()));
+                        findViewById(R.id.student_details_border).setVisibility(View.VISIBLE);
+                    } else {
+                        countView.setText("0");
+                        findViewById(R.id.student_details_border).setVisibility(View.VISIBLE);
                     }
+                } else {
+                    countView.setText("0");
+                    findViewById(R.id.student_details_border).setVisibility(View.VISIBLE);
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Toast.makeText(StudentActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

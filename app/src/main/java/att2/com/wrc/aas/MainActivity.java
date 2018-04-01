@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+import com.google.firebase.auth.FirebaseAuth;
 
 /**
 * MainActivity, Edited by Aurghya
@@ -31,6 +32,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getCurrentUser() != null) {
+            Intent intent = new Intent(MainActivity.this, TeacherActivity.class);
+            //Clear the back stack when logging in
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
 
         teacherViewLink = findViewById(R.id.teacher_view_link);
         studentDetailsBtn = findViewById(R.id.student_details_btn);

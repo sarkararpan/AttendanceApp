@@ -44,7 +44,10 @@
         <activity
             android:name=".ReportActivity"
             android:label="Attendance Report" />
-        <activity android:name=".SignUpActivity"></activity>
+        <activity
+            android:name=".SignUpActivity"
+            android:label="Sign Up"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
