@@ -14,13 +14,14 @@ import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**
-* MainActivity, Edited by Aurghya
+* MainActivity, Edited by Aurghya, 31-03-2018
 * This Activity will not be there once the user is logged in,
 * if the user is logged in, then an intent to TeacherActivity
 * will be started with finish() so that this activity can't be
 * accessed via the back stack.
 **/
 public class MainActivity extends AppCompatActivity {
+    //TODO : Fix code issues, some minor issues.
 
     private TextView teacherViewLink;
     private Button studentDetailsBtn;

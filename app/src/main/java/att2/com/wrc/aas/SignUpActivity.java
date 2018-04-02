@@ -23,6 +23,11 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Pattern;
 
+/**
+ * Activity for SignUp, Created by Aurghya, 30-03-2018
+ * Handles the SignUp for teachers, on successful sign up
+ * redirects to Teacher Activity
+ */
 public class SignUpActivity extends AppCompatActivity {
     private static final String TAG = "SignUpActivity";
     private FirebaseAuth mAuth;
@@ -89,6 +94,11 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * SignUp method. Calls .createUserWithEmailAndPassword() from FirebaseAuth
+     * @param user the User object, contains name, email, teacher ID, access level and verified status
+     * @param password the password for the user email
+     */
     private void startSignUp(final User user, String password) {
         mAuth.createUserWithEmailAndPassword(user.getEmail(), password).addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
             @Override

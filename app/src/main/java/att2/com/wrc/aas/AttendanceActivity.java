@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -25,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 * Later on, more security and teacher flags should be added.
 **/
 public class AttendanceActivity extends AppCompatActivity {
+    //TODO: Refactor code. A lot of issues to be checked.
 
     DatabaseReference studentRef;
     FirebaseRecyclerOptions<Student> options;
@@ -90,7 +92,7 @@ public class AttendanceActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-
+                        Toast.makeText(AttendanceActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
                 holder.getCheck().setOnClickListener(new View.OnClickListener() {
@@ -111,6 +113,7 @@ public class AttendanceActivity extends AppCompatActivity {
             }
         };
         recyclerView.setAdapter(adapter);
+        // Add onStop() stop listening for the adapter
         adapter.startListening();
     }
 }

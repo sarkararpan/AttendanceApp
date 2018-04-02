@@ -23,6 +23,7 @@ import java.util.Calendar;
  * Handles the data collection of ClassID, Date and PeriodID
  */
 public class TeacherIntermediateActivity extends AppCompatActivity {
+    //TODO: Code refactoring and cleanup. A lot of issues
 
     Spinner periodSpinner;
     EditText dateField;
@@ -80,6 +81,8 @@ public class TeacherIntermediateActivity extends AppCompatActivity {
         super.onStart();
         Calendar calendar = Calendar.getInstance();
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        //TODO : Disable the saturday and sunday from the calender
+        // Currently if not on Sunday and Saturday, attendance can be done for saturdays and sundays
         if(dayOfWeek == Calendar.SUNDAY || dayOfWeek == Calendar.SATURDAY) {
             Toast.makeText(this, "No classes on Saturdays and Sundays", Toast.LENGTH_SHORT).show();
             dateField.setEnabled(false);
@@ -96,6 +99,8 @@ public class TeacherIntermediateActivity extends AppCompatActivity {
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
+                // surround with an if statement for the material design?
+                // Maybe add another design for API level <= 19
                 DatePickerDialog dialog = new DatePickerDialog(
                         TeacherIntermediateActivity.this,
                         android.R.style.Theme_Material_Dialog_MinWidth,

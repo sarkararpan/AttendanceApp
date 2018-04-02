@@ -15,6 +15,12 @@ public class Student {
     public Student() {
     }
 
+    /**
+     * Constructor for Student class
+     * @param name Name of the student
+     * @param semester Student's current semester
+     * @param cid College ID (conventional) of the student
+     */
     public Student(String name, long semester, String cid) {
         this.name = name;
         this.semester = semester;

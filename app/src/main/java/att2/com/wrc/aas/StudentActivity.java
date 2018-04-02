@@ -27,7 +27,6 @@ public class StudentActivity extends AppCompatActivity {
     private TextView countView;
     private TextView cidView;
     private TextView semView;
-    private TextView totalAttendanceTextView;
 
 
     @Override
@@ -40,8 +39,6 @@ public class StudentActivity extends AppCompatActivity {
         countView = findViewById(R.id.student_total_attendance_view);
         cidView = findViewById(R.id.student_college_id_view);
         semView = findViewById(R.id.student_semester_view);
-        totalAttendanceTextView = findViewById(R.id.total_attendance_hint);
-
 
     }
 
@@ -62,11 +59,11 @@ public class StudentActivity extends AppCompatActivity {
                         studentIdView.setText(studentId);
                         cidView.setText(String.valueOf(student.getCid()));
                         // Change the string based on the semester
-                        if(student.getSemester() == 1) {
+                        if (student.getSemester() == 1) {
                             s = String.valueOf(student.getSemester()) + "st Semester";
-                        } else if(student.getSemester() == 2) {
+                        } else if (student.getSemester() == 2) {
                             s = String.valueOf(student.getSemester()) + "nd Semester";
-                        } else if(student.getSemester() == 3) {
+                        } else if (student.getSemester() == 3) {
                             s = String.valueOf(student.getSemester()) + "rd Semester";
                         } else {
                             s = String.valueOf(student.getSemester()) + "th Semester";

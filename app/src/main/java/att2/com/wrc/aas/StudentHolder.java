@@ -15,7 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 
 /**
- * Created by Aurghya on 24-03-2018.
+ * StudentHolder, Created by Aurghya, 24-03-2018.
  * ViewHolder for student_view
  * Handle with care, this class handles the count of attendance
  * and also the checkbox for the attendance, messing this up will

@@ -72,6 +72,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method that handles the sign in or login of an user
+     * Maybe make more granular?
+     */
     private void startSignIn() {
         String email = emailField.getText().toString();
         String password = passwordField.getText().toString();

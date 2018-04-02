@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -20,11 +21,13 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 /**
+ * DatabaseActivity, Edited by Aurghya, 01-04-2018
  * This activity is almost same as the Attendance Activity
  * the only main difference being the view is not a card view
  * and no checkboxes are there
  * */
 public class ReportActivity extends AppCompatActivity {
+    //TODO: Fix code issues, optimize database connection
 
     DatabaseReference studentRef;
     FirebaseRecyclerOptions<Student> options;
@@ -85,7 +88,7 @@ public class ReportActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-
+                        Toast.makeText(ReportActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

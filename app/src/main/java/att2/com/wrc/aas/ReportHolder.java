@@ -5,9 +5,11 @@ import android.view.View;
 import android.widget.TextView;
 
 /**
+ * ReportHolder, created by Aurghya, 28-03-2018
  * ViewHolder for student_report_item
  * */
 public class ReportHolder extends RecyclerView.ViewHolder{
+    //TODO: Implement onClick and more detailed view
     private TextView sidView;
     private TextView countView;
     private TextView nameView;
