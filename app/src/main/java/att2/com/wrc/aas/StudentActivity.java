@@ -84,14 +84,14 @@ public class StudentActivity extends AppCompatActivity {
                 if (dataSnapshot.hasChild(studentId)) {
                     if (dataSnapshot.child(studentId).hasChild("count")) {
                         countView.setText(String.valueOf((long) dataSnapshot.child(studentId).child("count").getValue()));
-                        findViewById(R.id.student_details_border).setVisibility(View.VISIBLE);
+                        findViewById(R.id.student_view_progress_bar).setVisibility(View.GONE);
                     } else {
                         countView.setText("0");
-                        findViewById(R.id.student_details_border).setVisibility(View.VISIBLE);
+                        findViewById(R.id.student_view_progress_bar).setVisibility(View.GONE);
                     }
                 } else {
                     countView.setText("0");
-                    findViewById(R.id.student_details_border).setVisibility(View.VISIBLE);
+                    findViewById(R.id.student_view_progress_bar).setVisibility(View.GONE);
                 }
             }
 
