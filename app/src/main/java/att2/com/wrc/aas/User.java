@@ -10,6 +10,7 @@ public class User {
     private String lastClass;
     private boolean verified;
     private String accessLevel;
+    private String tid;
 
     public User() {
     }
@@ -22,10 +23,11 @@ public class User {
      * @param verified verification status of user
      * @param accessLevel access level of the user
      */
-    User(String name, String email, String lastClass, boolean verified, String accessLevel) {
+    User(String name, String email, String lastClass,String tid, boolean verified, String accessLevel) {
         this.name = name;
         this.email = email;
         this.lastClass = lastClass;
+        this.tid=tid;
         this.verified = verified;
         this.accessLevel = accessLevel;
     }
@@ -51,7 +53,16 @@ public class User {
         return lastClass;
     }
 
+    public String getTid() {
+        return tid;
+    }
+
+    public void setTid(String tid) {
+        this.tid = tid;
+    }
+
     /**
+
      * @return returns true if the user is verified by one of the admins
      */
     public boolean isVerified() {

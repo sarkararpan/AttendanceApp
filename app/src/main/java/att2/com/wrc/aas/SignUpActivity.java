@@ -36,7 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText emailField;
     private EditText passwordField;
     private EditText confirmPasswordField;
-
+    private EditText teacherIdfield;
     private AwesomeValidation awesomeValidation;
 
     @Override
@@ -47,7 +47,7 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.COLORATION);
-
+        teacherIdfield = findViewById(R.id.user_emp_id_field);
         nameField = findViewById(R.id.user_name_field);
         emailField = findViewById(R.id.user_email_field);
         passwordField = findViewById(R.id.user_password_field);
@@ -60,7 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
         awesomeValidation.addValidation(emailField, Patterns.EMAIL_ADDRESS, "Should be a valid email");
         awesomeValidation.addValidation(passwordField, RegexTemplate.NOT_EMPTY, "Password should not be empty");
         awesomeValidation.addValidation(confirmPasswordField, RegexTemplate.NOT_EMPTY, "Should not be empty");
-
+        awesomeValidation.addValidation(teacherIdfield, RegexTemplate.NOT_EMPTY, "Teacher ID should not be empty");
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
                             nameField.getText().toString(),
                             emailField.getText().toString(),
                             "Not Available Yet",
+                            teacherIdfield.getText().toString(),
                             false,
                             "teacher");
 

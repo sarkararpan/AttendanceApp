@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class TeacherActivity extends AppCompatActivity {
     private TextView userVerifiedView;
     private TextView userAccessLevelView;
 
+    private Button addStudentBtn;
     private Button teacherIntermediateBtn;
     private Button generateReportBtn;
     private Button signOutBtn;
@@ -37,7 +39,7 @@ public class TeacherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
         mAuth = FirebaseAuth.getInstance();
-
+        addStudentBtn= findViewById(R.id.add_student_btn);
         userNameView = findViewById(R.id.user_name_view);
         userEmailView = findViewById(R.id.user_email_view);
         userLastClassView = findViewById(R.id.last_class_view);
@@ -75,6 +77,10 @@ public class TeacherActivity extends AppCompatActivity {
                                 userVerifiedView.setText(getResources().getString(R.string.verified_text));
                                 userVerifiedView.setVisibility(View.VISIBLE);
                             }
+                            else
+                            {
+                                teacherIntermediateBtn.setEnabled(false);
+                            }
                             findViewById(R.id.teacher_progress_bar).setVisibility(View.GONE);
                         }
                     }
@@ -110,6 +116,12 @@ public class TeacherActivity extends AppCompatActivity {
                 //Clear the back stack when logging in
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+            }
+        });
+        addStudentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TeacherActivity.this, AddStudentActivity.class));
             }
         });
     }
