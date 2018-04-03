@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddStudentActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/roboto_black"
+        android:gravity="center"
+        android:text="@string/add_student_text"
+        android:textAllCaps="true"
+        android:textColor="@color/colorBlack"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/student_name_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/light_field_background"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:hint="@string/student_name_here_text"
+        android:inputType="text"
+        android:padding="16dp"
+        android:textColorHint="@color/colorBlack" />
+
+    <EditText
+        android:id="@+id/student_id_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:background="@drawable/light_field_background"
+        android:fontFamily="@font/roboto_light"
+        android:hint="@string/enter_student_id_here"
+        android:inputType="number"
+        android:padding="16dp"
+        android:textColorHint="@color/colorBlack" />
+
+    <EditText
+        android:id="@+id/college_id_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/light_field_background"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:hint="@string/enter_college_id_here_text"
+        android:inputType="text"
+        android:padding="16dp"
+        android:textColorHint="@color/colorBlack" />
+
+    <EditText
+        android:id="@+id/semester_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:background="@drawable/light_field_background"
+        android:fontFamily="@font/roboto_light"
+        android:hint="@string/enter_semester_here"
+        android:inputType="number"
+        android:padding="16dp"
+        android:textColorHint="@color/colorBlack" />
+
+    <Button
+        android:id="@+id/add_student_submit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:fontFamily="@font/roboto_black"
+        android:padding="10dp"
+        android:text="@string/submit_btn_common"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp" />
+
+</LinearLayout>
