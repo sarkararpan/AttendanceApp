@@ -3,85 +3,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_solid_primary_dark"
     tools:context="att2.com.wrc.aas.StudentActivity">
 
-    <LinearLayout
-        android:id="@+id/student_fields"
+    <TextView
+        android:id="@+id/student_name_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/student_id_field"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="8dp"
-            android:hint="@string/enter_student_id_here" />
-
-        <Button
-            android:id="@+id/submit_student_id"
-            android:layout_margin="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/submit_btn_common" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_below="@id/student_fields"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_above="@id/student_details_texts"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_black"
+        android:gravity="center"
         android:padding="8dp"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/student_name_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Aurghyadip Kundu"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textAllCaps="true"
-            style="@style/Base.TextAppearance.AppCompat.Body1"/>
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/colorLight"
+        android:textSize="35sp" />
+
+    <LinearLayout
+        android:id="@+id/student_details_texts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="8dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
         <TextView
             android:id="@+id/student_id_view"
+            style="@style/Base.TextAppearance.AppCompat.Body2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="16500214006"
+            android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            style="@style/Base.TextAppearance.AppCompat.Body2"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/colorLight"
+            android:textSize="24sp" />
+
         <TextView
             android:id="@+id/student_college_id_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/roboto_light"
             android:gravity="center"
-            android:text="IT/14-15/005"/>
+            android:textColor="@color/colorLight"
+            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/student_semester_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/roboto_light"
             android:gravity="center"
-            android:text="8th Semester"/>
-        <TextView
-            android:id="@+id/student_total_attendance_view"
-            android:layout_width="match_parent"
+            android:textColor="@color/colorLight"
+            android:textSize="16sp" />
+        <LinearLayout
+            android:id="@+id/student_details_border"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="12"
-            android:gravity="center"
             android:layout_marginTop="20dp"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            style="@style/Base.TextAppearance.AppCompat.Body1"
-            android:textColor="@color/colorAccent" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Total Attendance"
-            android:textAllCaps="true"/>
+            android:padding="16dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/border">
+            <TextView
+                android:id="@+id/student_total_attendance_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_black"
+                android:gravity="center"
+                android:textColor="@color/colorLight"
+                android:textSize="50sp" />
+
+            <TextView
+                android:id="@+id/total_attendance_hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/total_attendance"
+                android:textAllCaps="true"
+                android:textColor="@color/colorLight" />
+        </LinearLayout>
+
     </LinearLayout>
+    <ProgressBar
+        android:id="@+id/student_view_progress_bar"
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </RelativeLayout>

@@ -5,9 +5,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
@@ -15,13 +19,21 @@ import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 
 import java.util.Calendar;
 
+/**
+ * Handles the data collection of ClassID, Date and PeriodID
+ */
 public class TeacherIntermediateActivity extends AppCompatActivity {
+    //TODO: Code refactoring and cleanup. A lot of issues
 
-    EditText periodField;
+    Spinner periodSpinner;
     EditText dateField;
     EditText classField;
     Button submitBtn;
 
+    String period;
+
+    Spinner.OnItemSelectedListener periodOnItemSelectedListener;
+    
     private AwesomeValidation awesomeValidation;
 
     private DatePickerDialog.OnDateSetListener onDateSetListener;
@@ -32,14 +44,34 @@ public class TeacherIntermediateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_intermediate);
 
-        periodField = findViewById(R.id.teacher_period_field);
+        periodSpinner = findViewById(R.id.teacher_period_field);
         classField = findViewById(R.id.teacher_class_field);
         dateField = findViewById(R.id.teacher_date_field);
         submitBtn = findViewById(R.id.submit_teacher_intermediate);
 
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
+                TeacherIntermediateActivity.this,
+                R.array.periods,
+                R.layout.spinner_item);
+        spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
+        periodSpinner.setAdapter(spinnerAdapter);
+
+        periodOnItemSelectedListener = new Spinner.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                period = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        };
+
+        periodSpinner.setOnItemSelectedListener(periodOnItemSelectedListener);
+
         awesomeValidation = new AwesomeValidation(ValidationStyle.COLORATION);
 
-        awesomeValidation.addValidation(periodField, RegexTemplate.NOT_EMPTY, "Period should not be empty");
         awesomeValidation.addValidation(dateField, RegexTemplate.NOT_EMPTY, "Date should not be empty");
         awesomeValidation.addValidation(classField, RegexTemplate.NOT_EMPTY, "Class should not be empty");
     }
@@ -47,6 +79,17 @@ public class TeacherIntermediateActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Calendar calendar = Calendar.getInstance();
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        //TODO : Disable the saturday and sunday from the calender
+        // Currently if not on Sunday and Saturday, attendance can be done for saturdays and sundays
+        if(dayOfWeek == Calendar.SUNDAY || dayOfWeek == Calendar.SATURDAY) {
+            Toast.makeText(this, "No classes on Saturdays and Sundays", Toast.LENGTH_SHORT).show();
+            dateField.setEnabled(false);
+            classField.setEnabled(false);
+            periodSpinner.setEnabled(false);
+            submitBtn.setEnabled(false);
+        }
 
         dateField.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +99,8 @@ public class TeacherIntermediateActivity extends AppCompatActivity {
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
+                // surround with an if statement for the material design?
+                // Maybe add another design for API level <= 19
                 DatePickerDialog dialog = new DatePickerDialog(
                         TeacherIntermediateActivity.this,
                         android.R.style.Theme_Material_Dialog_MinWidth,
@@ -79,7 +124,7 @@ public class TeacherIntermediateActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(awesomeValidation.validate()) {
                     Intent intent = new Intent(TeacherIntermediateActivity.this, AttendanceActivity.class);
-                    intent.putExtra("period", periodField.getText().toString().toUpperCase());
+                    intent.putExtra("period", period);
                     intent.putExtra("date", dateField.getText().toString());
                     intent.putExtra("class", classField.getText().toString().toUpperCase());
                     startActivity(intent);

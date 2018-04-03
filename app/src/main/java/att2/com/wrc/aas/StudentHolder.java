@@ -15,7 +15,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 
 /**
- * Created by Aurghya on 24-03-2018.
+ * StudentHolder, Created by Aurghya, 24-03-2018.
+ * ViewHolder for student_view
+ * Handle with care, this class handles the count of attendance
+ * and also the checkbox for the attendance, messing this up will
+ * result in a lot of unwanted bugs.
  */
 
 public class StudentHolder extends RecyclerView.ViewHolder {
@@ -37,6 +41,9 @@ public class StudentHolder extends RecyclerView.ViewHolder {
 
     }
 
+    /**
+     * @return The checkbox for setting the status.
+     */
     public CheckBox getCheck() {
         return check;
     }
@@ -54,7 +61,14 @@ public class StudentHolder extends RecyclerView.ViewHolder {
         countView.setText(text);
     }
 
-    // get and set the status of attendance of that student
+    /**
+     * Handles the checkbox checked status when first loading the view
+     * or after checking an attendance.
+     * @param roll The Roll number or the Unique ID of the student.
+     * @param date The date of the attendance to be added or edited.
+     * @param classId The class ID of the class / the subject.
+     * @param periodId The period ID, normally starting with P, like P1, P2 etc.
+     */
     public void setCheck(final String roll, final String date, final String classId, final String periodId) {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -93,9 +107,17 @@ public class StudentHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    // Update the attendance when the checkbox status is changed
+    /**
+     * Updates the attendance and the attendance count in the database.
+     * DO NOT CHANGE THIS METHOD, it will mess up the whole system of how
+     * attendance is counted and will probably result in an infinite loop.
+     * @param roll The Roll number or the Unique ID of the student.
+     * @param date The date of the attendance to be added or edited.
+     * @param classId The class ID of the class / the subject.
+     * @param periodId The period ID, normally starting with P, like P1, P2 etc.
+     * @param status Status of the checkbox, boolean.
+     */
     public void updateCheck(final String roll, final String date, final String classId, final String periodId, final boolean status) {
-        // Temporary date parsing
         reference.child(roll)
                 .child(classId)
                 .child(date)

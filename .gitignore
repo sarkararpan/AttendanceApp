@@ -3,7 +3,9 @@
 /local.properties
 /.idea
 .DS_Store
+/app/release
 /build
+*.apk
 /captures
 .externalNativeBuild
 

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="att2.com.wrc.aas">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,16 +22,32 @@
         </activity>
         <activity
             android:name=".StudentActivity"
-            android:label="Student Details"/>
+            android:label="Student Details" />
         <activity
             android:name=".TeacherActivity"
-            android:label="Teacher View"/>
+            android:label="Teacher View" />
         <activity
             android:name=".TeacherIntermediateActivity"
-            android:label="Teacher View"/>
+            android:label="Teacher View" />
         <activity
             android:name=".AttendanceActivity"
-            android:label="Attendance View"/>
+            android:label="Attendance View" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name=".LoginActivity"
+            android:label="Login"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ReportActivity"
+            android:label="Attendance Report" />
+        <activity
+            android:name=".SignUpActivity"
+            android:label="Sign Up"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

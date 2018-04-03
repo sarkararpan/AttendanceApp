@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/primary_dark_accent_gradient"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/login_fields"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/roboto_black"
+        android:gravity="center"
+        android:text="@string/teacher_login_text"
+        android:textAllCaps="true"
+        android:textColor="@color/colorLight"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:id="@+id/login_fields"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/login_email_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/light_field_background"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="center"
+            android:hint="@string/login_e_mail_here_text"
+            android:inputType="textEmailAddress"
+            android:padding="16dp"
+            android:textColorHint="@color/colorLight" />
+
+        <EditText
+            android:id="@+id/login_password_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:background="@drawable/light_field_background"
+            android:fontFamily="@font/roboto_light"
+            android:hint="@string/enter_password"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textColorHint="@color/colorLight" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_fields"
+        android:background="?android:attr/selectableItemBackground"
+        android:fontFamily="@font/roboto_black"
+        android:padding="10dp"
+        android:text="@string/submit_btn_common"
+        android:textColor="@color/colorLight"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/login_to_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/submit_login"
+        android:layout_marginTop="20dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:textSize="12dp"
+        android:text="@string/login_to_sign_up_text"
+        android:textColor="@color/colorLight" />
+</RelativeLayout>
